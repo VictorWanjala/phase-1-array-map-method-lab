@@ -1,3 +1,5 @@
+
+
 const tutorials = [
   'what does the this keyword mean?',
   'What is the Constructor OO pattern?',
@@ -8,9 +10,24 @@ const tutorials = [
   'Immutable State and Pure Functions',
   'what is the difference between == and ===?',
   'what is the difference between event capturing and bubbling?',
-  'what is JSONP?'
+  'what is JSONP?',
 ];
 
-const titleCased = () => {
-  return tutorials
+function titleCased() {
+  const ignoreWords = ['OO','API', 'NaN', 'JSONP'];
+  return tutorials.map(function (tutorial){
+    return tutorial
+    .split(' ')
+    .map(function(word){
+
+      if(ignoreWords.includes(word)
+      ) {
+        return word;
+      }
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join(' ');
+  });
 }
+
+console.log(titleCased());
